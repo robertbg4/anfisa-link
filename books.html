@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Books — Anfisa Utkina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#0F1023;
+      --ink-2:#3A3D55;
+      --muted:#7A7E94;
+      --bg:#ffffff;
+      --card:#ffffff;
+      --sky:#5FC0E8;
+      --radius-pill:999px;
+      --radius-card:18px;
+      --font:'Inter','Helvetica Neue',Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:var(--font);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .page{position:relative;min-height:100vh}
+    .container{max-width:1200px;margin:0 auto;padding:32px 40px 120px}
+
+    /* ===== Top bar ===== */
+    .topbar{
+      display:flex; align-items:center; gap:12px;
+      margin-bottom:80px;
+    }
+    .topbar .cv{
+      font-weight:700; font-size:13px;
+      letter-spacing:.04em;
+      padding:6px 8px;
+    }
+    .pill-tg{
+      display:inline-flex; align-items:center; justify-content:center;
+      background:var(--sky); color:#fff;
+      font-weight:600; font-size:13px;
+      padding:8px 16px; border-radius:999px;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .pill-tg:hover{ transform: translateY(-1px); box-shadow: 0 12px 30px rgba(95,192,232,.35); }
+    .pill-tg-lg{
+      font-size:18px;
+      padding:18px 38px;
+    }
+    .pill-home{
+      display:inline-flex; align-items:center; justify-content:center; gap:6px;
+      background:#C9F63F; color:var(--ink);
+      font-weight:700; font-size:13px;
+      padding:8px 16px; border-radius:999px;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .pill-home:hover{ transform: translateY(-1px); box-shadow: 0 12px 30px rgba(201,246,63,.45); }
+
+    /* ===== Page label ===== */
+    .page-label{
+      text-align:center;
+      font-weight:800;
+      font-size:28px;
+      letter-spacing:.02em;
+      margin-bottom:90px;
+      color:var(--ink);
+    }
+
+    /* ===== Case heading ===== */
+    .case-heading{
+      font-size: clamp(28px, 3vw, 44px);
+      font-weight:800;
+      line-height:1.1;
+      margin:0 0 56px;
+      color:var(--ink);
+    }
+
+    /* ===== Image grids ===== */
+    .grid{
+      display:grid; gap:24px;
+      margin: 50px 0;
+      align-items: stretch;
+    }
+    .grid-3{ grid-template-columns: repeat(3,1fr); }
+    .grid-2{ grid-template-columns: repeat(2,1fr); }
+    .grid-1{ grid-template-columns: 1fr; }
+    .card{
+      overflow: hidden;
+      border-radius: var(--radius-card);
+    }
+    .card img{
+      width:100%;
+      height:100%;
+      display:block;
+      object-fit: cover;
+      border-radius: var(--radius-card);
+    }
+    /* Uniform tile shapes inside multi-column grids (matches mockup) */
+    .grid-3 .card{ aspect-ratio: 3 / 2; }
+    .grid-2 .card{ aspect-ratio: 3 / 2; }
+    /* Full-width hero shots keep native proportions */
+    .grid-1 .card{ aspect-ratio: auto; }
+    .grid-1 .card img{ height:auto; object-fit: contain; }
+
+    /* "1 tall + 2 stacked" feature layout — used in section 3 */
+    .grid-feature{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:24px;
+      margin: 50px 0;
+    }
+    .grid-feature .card{ aspect-ratio: 3 / 2; }
+    .grid-feature .card.feature-tall{
+      grid-row: 1 / span 2;
+      aspect-ratio: auto;
+    }
+
+    /* ===== Section divider ===== */
+    .section-divider{
+      margin: 120px 0 70px;
+      border:none; height:0;
+    }
+
+    /* ===== Footer CTA ===== */
+    .footer-cta{
+      display:flex; justify-content:center;
+      margin-top: 100px;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width:900px){
+      .container{ padding: 24px 20px 80px; }
+      .grid-3, .grid-2{ grid-template-columns:1fr; }
+      .case-heading{ margin-bottom:32px; }
+      .section-divider{ margin:80px 0 50px; }
+      .topbar{ margin-bottom:48px; }
+      .page-label{ margin-bottom:50px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="container">
+
+      <!-- Top bar -->
+      <header class="topbar">
+        <a class="pill-home" href="index.html" aria-label="Вернуться на главную">← Домой</a>
+        <a class="cv" href="index.html">CV</a>
+        <a class="pill-tg" href="https://t.me/" target="_blank" rel="noopener">Написать в тг</a>
+      </header>
+
+      <!-- Page label -->
+      <div class="page-label">BOOKS</div>
+
+      <!-- ============ BOOK 1 — Доберман ============ -->
+      <h1 class="case-heading">Книга «Доберман и его взгляды»</h1>
+
+      <div class="grid grid-2">
+        <div class="card"><img src="assets/books/dober-cover.png" alt="Обложка книги «Доберман»"></div>
+        <div class="card"><img src="assets/books/extra-small.png" alt="Главы книги: 2, 3, 4, 5"></div>
+        <div class="card"><img src="assets/books/dober-3m.png" alt="Разворот «3 месяца»"></div>
+        <div class="card"><img src="assets/books/dober-adult.png" alt="Развороты со взрослыми доберманами"></div>
+        <div class="card"><img src="assets/books/dober-4-5m.png" alt="Развороты «4 и 5 месяцев»"></div>
+        <div class="card"><img src="assets/books/dober-puppy.png" alt="Разворот со щенком и игрушкой"></div>
+      </div>
+
+      <!-- ============ BOOK 2 — Sneakers ============ -->
+      <hr class="section-divider">
+
+      <h1 class="case-heading">A look at the History, Evolution, and Impact of Sneakers</h1>
+
+      <div class="grid grid-1">
+        <div class="card"><img src="assets/books/sneakers-cover.png" alt="Обложки книги о кроссовках"></div>
+      </div>
+      <div class="grid grid-1">
+        <div class="card"><img src="assets/books/sneakers-mosaic.png" alt="Мозаика разворотов книги о кроссовках"></div>
+      </div>
+
+      <!-- ============ BOOK 3 — И ещё немного книг ============ -->
+      <hr class="section-divider">
+
+      <h1 class="case-heading">И ещё немного книг…</h1>
+
+      <div class="grid-feature">
+        <div class="card feature-tall"><img src="assets/books/arch-stack.png" alt="Стопка книг про архитектуру"></div>
+        <div class="card"><img src="assets/books/extra-spread.png" alt="Разворот с текстовыми колонками"></div>
+        <div class="card"><img src="assets/books/istoki-spread.png" alt="Разворот «Истоки 1903»"></div>
+      </div>
+      <div class="grid grid-2">
+        <div class="card"><img src="assets/books/leo-1.png" alt="Разворот «Леонардо да Винчи» — портрет"></div>
+        <div class="card"><img src="assets/books/leo-2.png" alt="Разворот «Леонардо да Винчи» — анатомия"></div>
+      </div>
+      <div class="grid grid-2">
+        <div class="card"><img src="assets/books/leo-cover.png" alt="Обложка «Леонардо да Винчи / лёгкие и дыхание»"></div>
+        <div class="card"><img src="assets/books/dober-troll.png" alt="Разворот «Разыскивается злобный тролль»"></div>
+      </div>
+
+      <!-- Footer CTA -->
+      <div class="footer-cta">
+        <a class="pill-tg pill-tg-lg" href="https://t.me/" target="_blank" rel="noopener">Написать в тг</a>
+      </div>
+
+    </div>
+  </main>
+</body>
+</html>

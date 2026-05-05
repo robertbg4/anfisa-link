@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Branding — Anfisa Utkina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --ink:#0F1023;
+      --ink-2:#3A3D55;
+      --muted:#7A7E94;
+      --bg:#ffffff;
+      --card:#ffffff;
+      --sky:#5FC0E8;
+      --radius-pill:999px;
+      --radius-card:18px;
+      --font:'Inter','Helvetica Neue',Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:var(--font);background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .page{position:relative;min-height:100vh}
+    .container{max-width:1440px;margin:0 auto;padding:32px 60px 120px}
+
+    /* ===== Top bar ===== */
+    .topbar{
+      display:flex; align-items:center; gap:12px;
+      margin-bottom:80px;
+    }
+    .topbar .cv{
+      font-weight:700; font-size:13px;
+      letter-spacing:.04em;
+      padding:6px 8px;
+    }
+    .pill-tg{
+      display:inline-flex; align-items:center; justify-content:center;
+      background:var(--sky); color:#fff;
+      font-weight:600; font-size:13px;
+      padding:8px 16px; border-radius:999px;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .pill-tg:hover{ transform: translateY(-1px); box-shadow: 0 12px 30px rgba(95,192,232,.35); }
+    .pill-tg-lg{
+      font-size:18px;
+      padding:18px 38px;
+    }
+    .pill-home{
+      display:inline-flex; align-items:center; justify-content:center; gap:6px;
+      background:#C9F63F; color:var(--ink);
+      font-weight:700; font-size:13px;
+      padding:8px 16px; border-radius:999px;
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .pill-home:hover{ transform: translateY(-1px); box-shadow: 0 12px 30px rgba(201,246,63,.45); }
+
+    /* ===== Page label ===== */
+    .page-label{
+      text-align:center;
+      font-weight:800;
+      font-size:28px;
+      letter-spacing:.02em;
+      margin-bottom:90px;
+      color:var(--ink);
+    }
+
+    /* ===== Case heading ===== */
+    .case-heading{
+      font-size: clamp(24px, 2.4vw, 34px);
+      font-weight:800;
+      line-height:1.2;
+      margin:0 0 36px;
+      color:var(--ink);
+    }
+
+    /* ===== Text body inside a case (subhead + paragraph) ===== */
+    .case-text{ max-width: 760px; margin: 0 0 28px; }
+    .case-text h3{
+      font-size: 20px;
+      font-weight:800;
+      margin: 0 0 10px;
+      color: var(--ink);
+    }
+    .case-text p{
+      font-size: 17px;
+      line-height: 1.5;
+      margin: 0;
+      color: var(--ink-2);
+    }
+
+    /* ===== Image grids ===== */
+    .grid{
+      display:grid; gap:30px;
+      margin: 36px 0;
+      align-items: start;
+    }
+    .grid-2{ grid-template-columns: repeat(2,1fr); }
+    .grid-3{ grid-template-columns: repeat(3,1fr); }
+
+    /* Дикая Мята: 5 фото в сетке 3×2.
+       Средний столбец шире — туда идут две широкие фотографии (маяк, сцена)
+       с натуральным aspect 567/247 ≈ 2.3, поэтому ячейки col 2 имеют
+       aspect 2.3/1, ячейки col 3 — квадраты, и их высоты совпадают. */
+    .grid-mint{
+      grid-template-columns: 1fr 2.3fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      align-items: stretch;
+    }
+    .grid-mint .card{
+      aspect-ratio: 1 / 1;
+    }
+    .grid-mint .card:nth-child(2),
+    .grid-mint .card:nth-child(4){
+      aspect-ratio: 2.3 / 1;
+    }
+    .grid-mint .card:first-child{
+      aspect-ratio: auto;
+      grid-row: 1 / span 2;
+      height: 100%;
+    }
+    .grid-mint .card img{
+      width:100%; height:100%;
+      object-fit: cover;
+    }
+
+    .card{
+      align-self: start;
+      overflow: hidden;
+      border-radius: var(--radius-card);
+    }
+    .card img{
+      width:100%;
+      height:auto;
+      display:block;
+      border-radius: var(--radius-card);
+    }
+    /* PMEF row: two photos with different aspect ratios. Force equal heights
+       by locking both cards to the wider photo's ratio and cropping the taller
+       one with object-fit:cover. */
+    .grid:has(img[src*="yappy-booth"]){ align-items: stretch; }
+    .grid:has(img[src*="yappy-booth"]) .card{ aspect-ratio: 681 / 720; }
+    .grid:has(img[src*="yappy-booth"]) .card img{
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    /* Шёлковый Путь: две фотографии близкого аспекта, выравниваем точно. */
+    .grid:has(img[src*="silkroad"]){ align-items: stretch; }
+    .grid:has(img[src*="silkroad"]) .card{ aspect-ratio: 1.2 / 1; }
+    .grid:has(img[src*="silkroad"]) .card img{
+      width: 100%; height: 100%; object-fit: cover;
+    }
+    /* Маша Мирова: широкий 3D-макет слева + узкий вертикальный кадр справа.
+       Картинки показываем в натуральных пропорциях, левую центрируем
+       по вертикали относительно более высокой правой. align-self: center
+       обязательно — иначе глобальный .card { align-self: start } победит. */
+    .grid:has(img[src*="mirova-stage"]){
+      grid-template-columns: 1.7fr 1fr;
+      align-items: center;
+    }
+    .grid:has(img[src*="mirova-stage"]) .card{
+      align-self: center;
+    }
+    /* Plain card without rounded background — used for the standalone Urbantech logo. */
+    .card--plain{
+      background:#fff;
+      display:flex; align-items:center; justify-content:center;
+      min-height: 240px;
+      border-radius: 0;
+    }
+    .card--plain img{ width: 100%; max-width: none; border-radius: 0; }
+
+    /* Section divider between cases */
+    .section-divider{
+      margin: 110px 0 60px;
+      border:none; height:0;
+    }
+
+    /* Footer CTA */
+    .footer-cta{
+      display:flex; justify-content:center;
+      margin-top: 90px;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width:900px){
+      .container{ padding: 24px 20px 80px; }
+      .grid-2, .grid-3{ grid-template-columns:1fr; }
+      .grid-mint{ grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .grid-mint .card:first-child{ aspect-ratio: 1 / 1; grid-row: auto; height: auto; }
+      .case-heading{ margin-bottom:24px; }
+      .case-text{ margin-bottom:20px; }
+      .section-divider{ margin: 80px 0 40px; }
+      .topbar{ margin-bottom:48px; }
+      .page-label{ margin-bottom:50px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="container">
+
+      <!-- Top bar -->
+      <header class="topbar">
+        <a class="pill-home" href="index.html" aria-label="Вернуться на главную">← Домой</a>
+        <a class="cv" href="index.html">CV</a>
+        <a class="pill-tg" href="https://t.me/" target="_blank" rel="noopener">Написать в тг</a>
+      </header>
+
+      <!-- Branding label -->
+      <div class="page-label">BRANDING</div>
+
+      <!-- ============ CASE 1 — Урбантех ============ -->
+      <h1 class="case-heading">Группа компаний Урбантех</h1>
+
+      <section class="case-text">
+        <h3>Задача</h3>
+        <p>Ребрендинг без сильных изменений с&nbsp;сохранением идеи логотипа и&nbsp;духа компании.</p>
+      </section>
+
+      <section class="case-text">
+        <h3>Проблема</h3>
+        <p>Логотип был устаревшим во&nbsp;всём: начиная от&nbsp;форм, заканчивая цветовыми решениями.</p>
+      </section>
+
+      <!-- Logo before/after -->
+      <div class="grid">
+        <div class="card">
+          <img src="assets/branding/urbantech-rebrand.png" alt="Логотип Урбантех — до и после ребрендинга">
+        </div>
+      </div>
+
+      <section class="case-text">
+        <h3>Решение</h3>
+        <p>Грубые формы были сглажены, цветовая палитра стала глубже. Логотип стал более дружелюбным для&nbsp;пользователей. Так&nbsp;же был запрос на&nbsp;несколько позиций мерча.</p>
+      </section>
+
+      <!-- Row 1 — backpack + bag with logo (each PNG already includes its own light fill) -->
+      <div class="grid grid-2">
+        <div class="card"><img src="assets/branding/urbantech-backpack.png" alt="Корпоративный рюкзак Урбантех"></div>
+        <div class="card"><img src="assets/branding/urbantech-bag.png" alt="Брендированный пакет Урбантех и обновлённый знак"></div>
+      </div>
+      <!-- Row 2 — car (PNG with light fill) + standalone logo on plain white -->
+      <div class="grid grid-2">
+        <div class="card"><img src="assets/branding/urbantech-car.png" alt="Брендированный служебный автомобиль Урбантех"></div>
+        <div class="card--plain"><img src="assets/branding/urbantech-logo.png" alt="Финальный логотип Урбантех"></div>
+      </div>
+
+      <!-- ============ CASE 2 — Yappy outdoor / ПМЭФ ============ -->
+      <hr class="section-divider">
+
+      <h1 class="case-heading">Поддержание визуального языка Yappy<br>в&nbsp;выездных мероприятиях</h1>
+
+      <section class="case-text">
+        <h3>Форум ПМЭФ</h3>
+        <p>Чтобы поддержать стиль диджитал-продукта, была придумана инсталляция с&nbsp;подиумом в&nbsp;виде ноутбука, на&nbsp;котором показывались видео авторов Yappy в&nbsp;самом приложении и&nbsp;продукты компаний-партнёров.</p>
+      </section>
+
+      <div class="grid grid-2">
+        <div class="card"><img src="assets/branding/yappy-booth-1.png" alt="Стенд Yappy на ПМЭФ — подиум-ноутбук"></div>
+        <div class="card"><img src="assets/branding/yappy-booth-2.png" alt="Инсталляция Yappy на ПМЭФ — большой экран ноутбука"></div>
+      </div>
+
+      <!-- ============ CASE 3 — Дикая Мята ============ -->
+      <hr class="section-divider">
+
+      <h1 class="case-heading">Музыкальный фестиваль Дикая Мята</h1>
+
+      <section class="case-text">
+        <p>Музыкальный лейбл Yappy&nbsp;Music ежегодно участвовал в&nbsp;этом фестивале. Ниже представлена застройка 2024&nbsp;года. Было сделано множество игровых и&nbsp;зон отдыха. Наш стенд был одним из&nbsp;самых посещаемых за&nbsp;оба дня фестиваля.</p>
+      </section>
+
+      <div class="grid grid-mint">
+        <div class="card"><img src="assets/branding/mint-collage-3.png" alt="Зона Yappy Music — гости фестиваля"></div>
+        <div class="card"><img src="assets/branding/mint-collage-1.png" alt="Зона Yappy Music — маяк, общий план"></div>
+        <div class="card"><img src="assets/branding/mint-arch.png" alt="Световая арка Yappy Music"></div>
+        <div class="card"><img src="assets/branding/mint-collage-2.png" alt="Зона Yappy Music — сцена и зрители"></div>
+        <div class="card"><img src="assets/branding/mint-canopy.png" alt="Световой навес Yappy Music"></div>
+      </div>
+
+      <!-- ============ CASE 4 — Шёлковый Путь ============ -->
+      <hr class="section-divider">
+
+      <h1 class="case-heading">Гонка Шёлковый Путь</h1>
+
+      <section class="case-text">
+        <p>«Шёлковый&nbsp;путь»&nbsp;— это международный ралли-марафон, проводимый с&nbsp;2009&nbsp;года на&nbsp;территории России. Был разработан дизайн для&nbsp;гоночной машины, которая участвовала в&nbsp;этом ралли в&nbsp;2024&nbsp;году.</p>
+      </section>
+
+      <div class="grid grid-2">
+        <div class="card"><img src="assets/branding/silkroad-3d.png" alt="3D-визуализация раллийной машины Yappy"></div>
+        <div class="card"><img src="assets/branding/silkroad-rally.png" alt="Раллийная машина Yappy на старте «Шёлкового пути»"></div>
+      </div>
+
+      <!-- ============ CASE 5 — Концерты ============ -->
+      <hr class="section-divider">
+
+      <h1 class="case-heading">Визуальный ряд на&nbsp;концертах артистов и&nbsp;застройка сцен</h1>
+
+      <section class="case-text">
+        <p>В&nbsp;рамках музыкального лейбла Yappy&nbsp;Music было оформлено несколько застроек сцен для&nbsp;артистов Эри и&nbsp;Маша&nbsp;Мирова.</p>
+      </section>
+
+      <div class="grid grid-2">
+        <div class="card"><img src="assets/branding/mirova-stage-mock.png" alt="Сценография «Маша Мирова» — 3D-макет сцены"></div>
+        <div class="card"><img src="assets/branding/mirova-stage-live.png" alt="Сценография «Маша Мирова» — кадр с концерта"></div>
+      </div>
+      <div class="grid grid-2">
+        <div class="card"><img src="assets/branding/mona-stage-1.png" alt="Концертная застройка артистки Эри"></div>
+        <div class="card"><img src="assets/branding/mona-stage-2.png" alt="Концертная застройка артистки Эри — общий план"></div>
+      </div>
+
+      <!-- ============ CASE 6 — Гидропроект медиафасад ============ -->
+      <hr class="section-divider">
+
+      <h1 class="case-heading">Визуальный ряд для&nbsp;медиафасада Гидропроект</h1>
+
+      <div class="grid grid-3">
+        <div class="card"><img src="assets/branding/yappy-billboard-music.png" alt="Медиафасад Гидропроект — Yappy Music, Собачий Lie"></div>
+        <div class="card"><img src="assets/branding/yappy-billboard-all.png" alt="Медиафасад Гидропроект — «Всё в Yappy»"></div>
+        <div class="card"><img src="assets/branding/yappy-billboard-game.png" alt="Медиафасад Гидропроект — «Качай Yappy»"></div>
+      </div>
+
+      <!-- Footer CTA -->
+      <div class="footer-cta">
+        <a class="pill-tg pill-tg-lg" href="https://t.me/" target="_blank" rel="noopener">Написать в тг</a>
+      </div>
+
+    </div>
+  </main>
+</body>
+</html>
