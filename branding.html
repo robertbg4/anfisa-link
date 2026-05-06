@@ -199,8 +199,21 @@
     @media (max-width:900px){
       .container{ padding: 24px 20px 80px; }
       .grid-2, .grid-3{ grid-template-columns:1fr; }
-      .grid-mint{ grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-      .grid-mint .card:first-child{ aspect-ratio: 1 / 1; grid-row: auto; height: auto; }
+      /* Дикая Мята: 4 фото в схеме «2 квадрата + горизонталь + горизонталь».
+         Высокую вертикальную (mint-collage-3, 1-я по HTML) пока убираем. */
+      .grid-mint{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        grid-template-areas:
+          "arch    canopy"
+          "collage1 collage1"
+          "collage2 collage2";
+      }
+      .grid-mint .card:nth-child(1){ display: none; }            /* mint-collage-3 — скрыта */
+      .grid-mint .card:nth-child(2){ grid-area: collage1; aspect-ratio: 2.3 / 1; height: auto; }
+      .grid-mint .card:nth-child(3){ grid-area: arch;     aspect-ratio: 1 / 1;   height: auto; }
+      .grid-mint .card:nth-child(4){ grid-area: collage2; aspect-ratio: 2.3 / 1; height: auto; }
+      .grid-mint .card:nth-child(5){ grid-area: canopy;   aspect-ratio: 1 / 1;   height: auto; }
       .case-heading{ margin-bottom:24px; }
       .case-text{ margin-bottom:20px; }
       .section-divider{ margin: 80px 0 40px; }

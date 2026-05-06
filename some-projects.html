@@ -95,6 +95,8 @@
     .grid:has(img[src*="joki-promo"]) > .card{ align-self: center; }
     .stack{
       display:flex; flex-direction:column; justify-content:space-between;
+      gap: 24px; /* видимый просвет на мобиле; на десктопе justify-content
+                    распределяет картинки по высоте, gap работает как минимум */
     }
     .card{
       align-self: start;
