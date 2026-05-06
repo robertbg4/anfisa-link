@@ -286,11 +286,14 @@
     /* ===== Responsive ===== */
     @media (max-width: 900px){
       html{ scroll-snap-type: none; }
-      .screen{ height: auto; min-height: 100vh; }
+      /* На мобиле snap-scroll отключён, поэтому min-height: 100vh
+         только создаёт лишнюю пустоту между секциями. */
+      .screen{ height: auto; min-height: auto; }
+      .scroll-hint{ display: none; } /* прятался внизу .screen — без 100vh наезжал бы на контент */
       .hero{
         grid-template-columns: 1fr;
-        padding: 80px 24px 40px;
-        gap: 28px;
+        padding: 110px 24px 40px;  /* больше top, чтобы композиция «отлеплялась» от фиксированной шапки */
+        gap: 56px;                  /* больше воздуха между бэйджем 10+ YEARS и фото */
         width: auto;
         text-align: center;
       }
@@ -309,7 +312,7 @@
       .badge--art{ top:-4%; left:0%; padding:7px 16px; font-size:13px; }
       .badge--graphic{ top:42%; left:48%; padding:7px 16px; font-size:13px; }
       .badge--years{ top:100%; left:50%; transform:translate(-50%, 8px); padding:6px 14px; font-size:12px; }
-      .cats-screen{ padding: 80px 24px; }
+      .cats-screen{ padding: 40px 24px 60px; }
       .cat{ font-size:16px; padding:14px 26px; }
     }
   </style>
