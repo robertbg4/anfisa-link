@@ -27,10 +27,15 @@
     .page{position:relative;min-height:100vh}
     .container{max-width:1200px;margin:0 auto;padding:32px 40px 120px}
 
-    /* ===== Top bar ===== */
+    /* ===== Top bar (sticky) ===== */
     .topbar{
       display:flex; align-items:center; gap:12px;
-      margin-bottom:80px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--bg);
+      padding: 16px 0;
+      margin: -32px 0 64px;
     }
     .topbar .cv{
       font-weight:700; font-size:13px;
@@ -125,6 +130,21 @@
     }
     /* Keep top alignment in 2-col rows */
     .grid{ align-items: start; }
+
+    /* jj-desk 2x2: единый aspect-ratio, чтобы все 4 карточки имели
+       одинаковую высоту и верхние края картинок выравнивались.
+       object-position: top сохраняет шапку лендинга при кропе. */
+    .grid:has(img[src*="jj-desk"]){ align-items: stretch; }
+    .grid:has(img[src*="jj-desk"]) .card{
+      aspect-ratio: 3 / 2;
+      align-self: stretch;
+    }
+    .grid:has(img[src*="jj-desk"]) .card img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
 
     /* ===== Text blocks between grids ===== */
     .block{
@@ -230,7 +250,7 @@
       <section class="meta">
         <div>
           <h3>Задача</h3>
-          <p>Редизайн сайта + сделать онлайн-платформу для обучения детей</p>
+          <p>Редизайн сайта + сделать онлайн-платформу<br>для&nbsp;обучения детей</p>
         </div>
         <div>
           <h3>Результаты</h3>

@@ -27,10 +27,15 @@
     .page{position:relative;min-height:100vh}
     .container{max-width:1200px;margin:0 auto;padding:32px 40px 120px}
 
-    /* ===== Top bar ===== */
+    /* ===== Top bar (sticky) ===== */
     .topbar{
       display:flex; align-items:center; gap:12px;
-      margin-bottom:80px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--bg);
+      padding: 16px 0;
+      margin: -32px 0 64px;
     }
     .topbar .cv{
       font-weight:700; font-size:13px;
@@ -80,6 +85,14 @@
     }
     .grid-kartel > .card{ align-self: end; }
     .grid-kartel > .stack{ align-self: stretch; }
+
+    /* KARTEL второй ряд: куртки центрируем по высоте сумки (сумка выше) */
+    .grid:has(img[src*="kosmo-jackets"]){ align-items: center; }
+    .grid:has(img[src*="kosmo-jackets"]) > .card{ align-self: center; }
+
+    /* Joki Joya: коробку центрируем по высоте промо-плаката (промо выше) */
+    .grid:has(img[src*="joki-promo"]){ align-items: center; }
+    .grid:has(img[src*="joki-promo"]) > .card{ align-self: center; }
     .stack{
       display:flex; flex-direction:column; justify-content:space-between;
     }
@@ -148,11 +161,11 @@
         </div>
       </section>
 
-      <!-- ===== Joki Joya: коробка + промо ===== -->
+      <!-- ===== Joki Joya: промо + коробка ===== -->
       <section class="section">
         <div class="grid grid-2">
-          <div class="card"><img src="assets/some-projects/box.png" alt="Joki Joya — коробка «Мнемониксы»"></div>
           <div class="card"><img src="assets/some-projects/joki-promo.png" alt="Joki Joya — постер «Мир вокруг нас»"></div>
+          <div class="card"><img src="assets/some-projects/box.png" alt="Joki Joya — коробка «Мнемониксы»"></div>
         </div>
       </section>
 

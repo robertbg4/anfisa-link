@@ -27,10 +27,15 @@
     .page{position:relative;min-height:100vh}
     .container{max-width:1440px;margin:0 auto;padding:32px 60px 120px}
 
-    /* ===== Top bar ===== */
+    /* ===== Top bar (sticky) ===== */
     .topbar{
       display:flex; align-items:center; gap:12px;
-      margin-bottom:80px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--bg);
+      padding: 16px 0;
+      margin: -32px 0 64px;
     }
     .topbar .cv{
       font-weight:700; font-size:13px;
@@ -163,6 +168,12 @@
     .grid:has(img[src*="mirova-stage"]) .card{
       align-self: center;
     }
+    /* Эри: узкий портрет слева + широкий общий план справа. Натуральные высоты
+       обеих фотографий совпадают (484px), поэтому колонки берут пропорции
+       натуральных ширин (457:726) — высоты автоматически выравниваются. */
+    .grid:has(img[src*="mona-stage"]){
+      grid-template-columns: 457fr 726fr;
+    }
     /* Plain card without rounded background — used for the standalone Urbantech logo. */
     .card--plain{
       background:#fff;
@@ -269,7 +280,7 @@
       <h1 class="case-heading">Музыкальный фестиваль Дикая Мята</h1>
 
       <section class="case-text">
-        <p>Музыкальный лейбл Yappy&nbsp;Music ежегодно участвовал в&nbsp;этом фестивале. Ниже представлена застройка 2024&nbsp;года. Было сделано множество игровых и&nbsp;зон отдыха. Наш стенд был одним из&nbsp;самых посещаемых за&nbsp;оба дня фестиваля.</p>
+        <p>Музыкальный лейбл Yappy&nbsp;Music ежегодно участвовал в&nbsp;этом фестивале. Ниже представлена застройка 2024&nbsp;года. Было сделано множество игровых и&nbsp;зон отдыха. Наш&nbsp;стенд был одним из&nbsp;самых посещаемых за&nbsp;оба дня фестиваля.</p>
       </section>
 
       <div class="grid grid-mint">
@@ -308,8 +319,8 @@
         <div class="card"><img src="assets/branding/mirova-stage-live.png" alt="Сценография «Маша Мирова» — кадр с концерта"></div>
       </div>
       <div class="grid grid-2">
-        <div class="card"><img src="assets/branding/mona-stage-1.png" alt="Концертная застройка артистки Эри"></div>
-        <div class="card"><img src="assets/branding/mona-stage-2.png" alt="Концертная застройка артистки Эри — общий план"></div>
+        <div class="card"><img src="assets/branding/mona-stage-2.png" alt="Концертная застройка артистки Эри — портрет"></div>
+        <div class="card"><img src="assets/branding/mona-stage-1.png" alt="Концертная застройка артистки Эри — общий план"></div>
       </div>
 
       <!-- ============ CASE 6 — Гидропроект медиафасад ============ -->
