@@ -128,23 +128,12 @@
       display:block;
       border-radius: var(--radius-card);
     }
-    /* Keep top alignment in 2-col rows */
+    /* Keep top alignment in 2-col rows. align-items: start ставит карточки по
+       верхнему краю своего ряда, а align-self: start на .card перекрывает
+       любой stretch — натуральные размеры картинок сохраняются (вместе с
+       мягкими тенями/градиентами по краям), верхние границы выровнены. */
     .grid{ align-items: start; }
-
-    /* jj-desk 2x2: единый aspect-ratio, чтобы все 4 карточки имели
-       одинаковую высоту и верхние края картинок выравнивались.
-       object-position: top сохраняет шапку лендинга при кропе. */
-    .grid:has(img[src*="jj-desk"]){ align-items: stretch; }
-    .grid:has(img[src*="jj-desk"]) .card{
-      aspect-ratio: 3 / 2;
-      align-self: stretch;
-    }
-    .grid:has(img[src*="jj-desk"]) .card img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-    }
+    .grid:has(img[src*="jj-desk"]) .card{ align-self: start; }
 
     /* ===== Text blocks between grids ===== */
     .block{
